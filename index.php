@@ -1,4 +1,31 @@
-<?php ?>
+<?php 
+
+    if(isset($_GET['number_of_characters'])){
+        $number_of_characters= $_GET['number_of_characters'];
+        
+        $characters=[ 
+            'lowercase_letters'=>'abcdefghijklmnopqrstuvwxyz',
+            'uppercase_letters'=>'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'simbols'=>'!?~@#-_+<>[]{}',
+            'numbers'=>'1234567890',
+
+            
+        ];
+            /* $shuffled = str_shuffle($str); */
+            $num_simb= rand(1,2);
+            $num_number= rand(1,4);
+            $num_uppercase= rand(1, (($number_of_characters-1)-($num_number+$num_simb)));
+            $num_uppercase= rand (1, ($number_of_characters -($num_number+$num_simb+$num_uppercase)));
+            $password="";
+            var_dump(strlen($characters['simbols']));
+            for( $i=0; $i<$num_simb; $i++ ){
+                $random_character= rand(0, (strlen($characters['simbols'])-1));
+                $password.= $characters['simbols'][$random_character];
+            }
+            var_dump($password);
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
