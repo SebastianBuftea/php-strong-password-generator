@@ -11,18 +11,31 @@
 
             
         ];
-            /* $shuffled = str_shuffle($str); */
-            $num_simb= rand(1,2);
-            $num_number= rand(1,4);
+           
+            $num_simb= rand(1,round($number_of_characters/4));
+            $num_number= rand(1, floor($number_of_characters/2));
             $num_uppercase= rand(1, (($number_of_characters-1)-($num_number+$num_simb)));
-            $num_uppercase= rand (1, ($number_of_characters -($num_number+$num_simb+$num_uppercase)));
+            $num_lowercase= rand (($number_of_characters -($num_number+$num_simb+$num_uppercase)), ($number_of_characters -($num_number+$num_simb+$num_uppercase)));
             $password="";
-            var_dump(strlen($characters['simbols']));
+            
             for( $i=0; $i<$num_simb; $i++ ){
-                $random_character= rand(0, (strlen($characters['simbols'])-1));
-                $password.= $characters['simbols'][$random_character];
+                $num_rand_character= rand(0, (strlen($characters['simbols'])-1));
+                $password.= $characters['simbols'][$num_rand_character];
+            }
+            for( $i=0; $i<$num_number; $i++ ){
+                $num_rand_character= rand(0, (strlen($characters['numbers'])-1));
+                $password.= $characters['numbers'][$num_rand_character];
+            }
+            for( $i=0; $i<$num_uppercase; $i++ ){
+                $num_rand_character= rand(0, (strlen($characters['uppercase_letters'])-1));
+                $password.= $characters['uppercase_letters'][$num_rand_character];
+            }
+            for( $i=0; $i<$num_lowercase; $i++ ){
+                $num_rand_character= rand(0, (strlen($characters['lowercase_letters'])-1));
+                $password.= $characters['lowercase_letters'][$num_rand_character];
             }
             var_dump($password);
+            var_dump(str_shuffle($password));
 
     }
 ?>
