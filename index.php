@@ -36,6 +36,12 @@
 
             /* mescoliamo la stringa che abbiamo ottenuto con i cicli */
             $password=str_shuffle($password);
+
+            session_start();
+            $_SESSION['password']= $password;
+
+            header('Location: ./my_area.php');
+
             
     }
 ?>
@@ -55,12 +61,9 @@
             <div class="col-5">
                 <form action="index.php" method="GET">
                     <label for="number_of_characters">selezionare il numero di caratterri che formeranno la password</label>
-                    <input type="number" min="8" value="8" name="number_of_characters" id="number_of_characters" class="form-control">
+                    <input type="number" min="8"  name="number_of_characters" id="number_of_characters" class="form-control">
                     <button type="submit">Generate</button>
                 </form>
-            </div>
-            <div class="col-12">
-                <h2>Ecco qui la tua password: <?php echo  isset($password) ? $password :'';  ?></h2>
             </div>
         </div>
     </div>
